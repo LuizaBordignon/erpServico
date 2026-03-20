@@ -10,8 +10,8 @@ app.use(express.json());
 
 app.use('/auth', require('./src/routes/auth.routes'));
 app.use('/clients', require('./src/routes/clients.routes'));
-app.use('/services', require('./src/routes/services.routes'));
-app.use('/orders', require('./src/routes/orders.routes'));
+//app.use('/services', require('./src/routes/services.routes'));
+//app.use('/orders', require('./src/routes/orders.routes'));
 
 app.get('/health', (req,res) => {
   res.json({ status: 'ok', message: 'servidor rodando.'});
