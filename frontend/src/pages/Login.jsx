@@ -2,9 +2,9 @@ import { useState } from 'react';
 import api from '../api/axios';
 
 function Login() {
-  const [email, setEmail]       = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError]       = useState('');
+  const [error, setError] = useState('');
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -21,37 +21,45 @@ function Login() {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.box}>
-        <h1 style={styles.title}>Sistema de OS</h1>
-        <p style={styles.subtitle}>Faça login para continuar</p>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-10 rounded-2xl shadow-md w-full max-w-md">
 
-        {error && <p style={styles.error}>{error}</p>}
+        <h1 className="text-3xl font-bold text-gray-800 mb-1">Sistema de OS</h1>
+        <p className="text-gray-400 mb-8">Faça login para continuar</p>
 
-        <form onSubmit={handleLogin}>
-          <div style={styles.field}>
-            <label>Email</label>
+        {error && (
+          <div className="bg-red-50 text-red-500 p-3 rounded-lg mb-6 text-sm">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleLogin} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={styles.input}
               placeholder="seu@email.com"
+              className="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          <div style={styles.field}>
-            <label>Senha</label>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-700">Senha</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={styles.input}
               placeholder="sua senha"
+              className="border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          <button type="submit" style={styles.button}>
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
+          >
             Entrar
           </button>
         </form>
@@ -59,34 +67,5 @@ function Login() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex', justifyContent: 'center',
-    alignItems: 'center', height: '100vh',
-    backgroundColor: '#f0f2f5',
-  },
-  box: {
-    backgroundColor: '#fff', padding: '40px',
-    borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-    width: '100%', maxWidth: '400px',
-  },
-  title: { margin: '0 0 8px', color: '#333' },
-  subtitle: { margin: '0 0 24px', color: '#666' },
-  error: { color: 'red', marginBottom: '16px' },
-  field: { marginBottom: '16px' },
-  input: {
-    width: '100%', padding: '10px',
-    border: '1px solid #ddd', borderRadius: '4px',
-    fontSize: '14px', marginTop: '4px',
-    boxSizing: 'border-box',
-  },
-  button: {
-    width: '100%', padding: '12px',
-    backgroundColor: '#1890ff', color: '#fff',
-    border: 'none', borderRadius: '4px',
-    fontSize: '16px', cursor: 'pointer',
-  },
-};
 
 export default Login;
