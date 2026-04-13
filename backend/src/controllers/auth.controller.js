@@ -25,7 +25,7 @@ async function register(req, res) {
     const result = await db.query(
       `INSERT INTO users (name,email, password_hash)
         VALUES ($1, $2, $3)
-        RETURNING id, name, email, created_at`,
+        RETURNING id, name, email, create_at`,
       [name, email, password_hash],
     );
 
